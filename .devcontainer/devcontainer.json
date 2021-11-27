@@ -1,15 +1,17 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.192.0/containers/python-3
 {
-	"name": "Python 3",
+	"name": "LUNA Development Environment",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
 		"args": { 
 			// Update 'VARIANT' to pick a Python version: 3, 3.6, 3.7, 3.8, 3.9
-			"VARIANT": "3.9",
+			"PYTHON_VARIANT": "3.9",
 			// Options
-			"NODE_VERSION": "lts/*"
+			"NODE_VERSION": "lts/*",
+			"OSS_CAD_SUITE_URL": "https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2021-09-27/oss-cad-suite-linux-x64-20210927.tgz",
+			"RISCV_TOOLCHAIN_URL": "https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz"
 		}
 	},
 
