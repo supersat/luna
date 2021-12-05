@@ -86,3 +86,44 @@ int LIBUSB_CALL libusb_set_interface_alt_setting(libusb_device_handle *dev_handl
     printf("libusb_set_interface_alt_setting\n");
     return ((int LIBUSB_CALL (*)(libusb_device_handle *, int, int))(dlsym(RTLD_NEXT, "libusb_release_interface")))(dev_handle, interface_number, alternate_setting);
 }
+
+int LIBUSB_CALL libusb_reset_device(libusb_device_handle *dev_handle) {
+    printf("libusb_reset_device\n");
+    return ((int LIBUSB_CALL (*)(libusb_device_handle *))(dlsym(RTLD_NEXT, "libusb_reset_device")))(dev_handle);
+}
+
+int LIBUSB_CALL libusb_kernel_driver_active(libusb_device_handle *dev_handle,
+	int interface_number) {
+    printf("libusb_kernel_driver_active\n");
+    return ((int LIBUSB_CALL (*)(libusb_device_handle *, int))(dlsym(RTLD_NEXT, "libusb_kernel_driver_active")))(dev_handle, interface_number);
+}
+
+int LIBUSB_CALL libusb_detach_kernel_driver(libusb_device_handle *dev_handle,
+	int interface_number) {
+    return ((int LIBUSB_CALL (*)(libusb_device_handle *, int))(dlsym(RTLD_NEXT, "libusb_detach_kernel_driver")))(dev_handle, interface_number);
+}
+
+int LIBUSB_CALL libusb_attach_kernel_driver(libusb_device_handle *dev_handle,
+	int interface_number) {
+    printf("libusb_attach_kernel_driver\n");
+    return ((int LIBUSB_CALL (*)(libusb_device_handle *, int))(dlsym(RTLD_NEXT, "libusb_attach_kernel_driver")))(dev_handle, interface_number);
+}
+
+int LIBUSB_CALL libusb_get_device_descriptor(libusb_device *dev,
+	struct libusb_device_descriptor *desc) {
+    printf("libusb_get_device_descriptor\n");
+    return ((int LIBUSB_CALL (*)(libusb_device *, struct libusb_device_descriptor *))(dlsym(RTLD_NEXT, "libusb_get_device_descriptor")))(dev, desc);
+}
+
+int LIBUSB_CALL libusb_get_config_descriptor(libusb_device *dev,
+	uint8_t config_index, struct libusb_config_descriptor **config) {
+    printf("libusb_get_config_descriptor\n");
+    return ((int LIBUSB_CALL (*)(libusb_device *, uint8_t, struct libusb_config_descriptor **))
+        (dlsym(RTLD_NEXT, "libusb_get_config_descriptor")))(dev, config_index, config);
+ }
+
+ void LIBUSB_CALL libusb_free_config_descriptor(
+	struct libusb_config_descriptor *config) {
+    printf("libusb_free_config_descriptor\n");
+    ((void LIBUSB_CALL (*)(struct libusb_config_descriptor *))(dlsym(RTLD_NEXT, "libusb_config_descriptor")))(config);
+}
