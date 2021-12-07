@@ -1,0 +1,4 @@
+[submodule "usb-remoting/libwebsockets"]
+	path = usb-remoting/libwebsockets
+	url = https://libwebsockets.org/repo/libwebsockets
+	branch = v4.3-stable
