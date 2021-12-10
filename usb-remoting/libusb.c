@@ -2,8 +2,9 @@
 #include <stdio.h>
 
 #define __USE_GNU
-
 #include <dlfcn.h>
+
+#include "server.h"
 
 void *real_libusb;
 
@@ -14,11 +15,13 @@ int LIBUSB_CALL libusb_init(libusb_context **ctx) {
         perror("Can't open real libusb");
         return LIBUSB_ERROR_OTHER;
     }
+    ws_init();
     return ((int LIBUSB_CALL (*)(libusb_context **))(dlsym(real_libusb, "libusb_init")))(ctx);
 }
 
 void LIBUSB_CALL libusb_exit(libusb_context *ctx) {
     printf("libusb_exit\n");
+    ws_shutdown();
     ((void LIBUSB_CALL (*)(libusb_context *))(dlsym(real_libusb, "libusb_exit")))(ctx);
 }
 
